@@ -15,11 +15,11 @@ function checkPlayerSelection(inputString) {
     }
 }
 
-function getPlayerChoice() {
+function getPlayerChoice(roundNumber) {
     let validSelection = false;
     let playerChoice;
     while(validSelection === false){
-        let playerChoiceInput = prompt("Please enter your choice: ");
+        let playerChoiceInput = prompt(`Round ${roundNumber}: Please enter your choice: `);
         playerChoice = playerChoiceInput.toLowerCase();
         validSelection = checkPlayerSelection(playerChoice);
     }
@@ -32,12 +32,15 @@ function playRound( playerChoice, CPUChoice ) {
     let cChoiceEnum = enumerateChoice(CPUChoice);
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
          CPUChoice = capitalize(CPUChoice);
-        return `You lose. ${CPUChoice} beats ${playerChoice}.`;
+        console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
+        return 0;
     } else if( pChoiceEnum === cChoiceEnum){
-        return `Draw`;
+        console.log(`Draw.`)
+        return 0;
     } else {
         playerChoice = capitalize(playerChoice);
-        return `You win! ${playerChoice} beats ${CPUChoice}.`;
+        console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
+        return 1;
     }
 }
 function enumerateChoice( choice ){
@@ -56,19 +59,17 @@ function capitalize( inputString ){
 }
 
 function game() {
-    for( i = 1; i <= roundCount; i++ ) {
+    const NUMBER_OF_ROUNDS = 5;
+    let playerScore = 0;
+    for( round = 1; round <= NUMBER_OF_ROUNDS; round++ ) {
         let CPUChoice = getComputerChoice();
-        let playerChoice = getPlayerChoice();
+        let playerChoice = getPlayerChoice(round);
 
-        playRound(playerChoice, CPUChoice);
+        playerScore += playRound(playerChoice, CPUChoice);
     }
+
+    console.log(playerScore)
 }
-let CPUChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
+game();
 
-let result = playRound(playerChoice, CPUChoice);
-
-console.log(result);
-console.log(playerChoice);
-console.log(CPUChoice);
 
