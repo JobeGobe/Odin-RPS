@@ -33,14 +33,14 @@ function playRound( playerChoice, CPUChoice ) {
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
          CPUChoice = capitalize(CPUChoice);
         console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
-        return 0;
+        return 'loss';
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
         return 0;
     } else {
         playerChoice = capitalize(playerChoice);
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
-        return 1;
+        return 'win';
     }
 }
 function enumerateChoice( choice ){
@@ -61,14 +61,30 @@ function capitalize( inputString ){
 function game() {
     const NUMBER_OF_ROUNDS = 5;
     let playerScore = 0;
+    let CPUScore = 0;
     for( round = 1; round <= NUMBER_OF_ROUNDS; round++ ) {
         let CPUChoice = getComputerChoice();
         let playerChoice = getPlayerChoice(round);
 
-        playerScore += playRound(playerChoice, CPUChoice);
+        let result = playRound(playerChoice, CPUChoice);
+        if (result === 'win') {
+            playerScore += 1;
+        } else if(result === 'loss') {
+            CPUScore += 1;
+        }
+
+        
     }
 
-    console.log(playerScore)
+    if (playerScore > CPUScore){
+        console.log(`You Win with a final Score of ${playerScore}-${CPUScore}.`);
+    } else if (CPUScore > playerScore) {
+        console.log(`You Lose with a final Score of ${playerScore}-${CPUScore}.`);
+    } else if(playerScore === CPUScore) {
+        console.log(`The game ends in a draw.`)
+    }
+    console.log(playerScore);
+    console.log(CPUScore);
 }
 game();
 
