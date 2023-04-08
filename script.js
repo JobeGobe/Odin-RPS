@@ -7,26 +7,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function checkPlayerSelection(inputString) {
-    if ( inputString === 'rock' || inputString === 'scissors' || inputString === 'paper' ) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function getPlayerChoice(roundNumber) {
-    let validSelection = false;
-    let playerChoice;
-    while(validSelection === false){
-        let playerChoiceInput = prompt(`Round ${roundNumber}: Please enter your choice: `);
-        playerChoice = playerChoiceInput.toLowerCase();
-        validSelection = checkPlayerSelection(playerChoice);
-    }
-
-    return playerChoice;
-}
-
 function playRound( playerChoice, CPUChoice ) {
     let pChoiceEnum = enumerateChoice(playerChoice);
     let cChoiceEnum = enumerateChoice(CPUChoice);
@@ -81,7 +61,7 @@ function game() {
     } else if (CPUScore > playerScore) {
         console.log(`You Lose with a final Score of ${playerScore}-${CPUScore}.`);
     } else if(playerScore === CPUScore) {
-        console.log(`The game ends in a draw.`)
+        console.log(`The game ends in a draw. ${playerScore}-${CPUScore}`);
     }
     console.log(playerScore);
     console.log(CPUScore);
