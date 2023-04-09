@@ -1,3 +1,7 @@
+const options = ['rock', 
+                 'paper', 
+                 'scissors'];
+
 function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
 
@@ -70,39 +74,55 @@ function game() {
 
 const buttonContainer = document.querySelector('.button-container');
 
-const rockButton = document.createElement('button');
-rockButton.textContent = 'Rock';
-rockButton.classList.add('player-choice');
-rockButton.setAttribute('data-choice', 'rock');
-
-const paperButton = document.createElement('button');
-paperButton.textContent = 'Paper';
-paperButton.classList.add('player-choice');
-paperButton.setAttribute('data-choice', 'paper');
-
-const scissorsButton = document.createElement('button');
-scissorsButton.textContent = 'Scissors';
-scissorsButton.classList.add('player-choice');
-scissorsButton.setAttribute('data-choice', 'scissors');
+for(choice in options){
+    button = document.createElement('button');
+    console.log(options[choice]);
+    button.textContent = capitalize(`${options[choice]}`);
+    button.classList.add('player-choice');
+    button.setAttribute('data-choice', `${options[choice]}`);
+    buttonContainer.appendChild(button);
+}
 
 
-buttonContainer.appendChild(rockButton);
-buttonContainer.appendChild(paperButton);
-buttonContainer.appendChild(scissorsButton);
+// for( item in buttonOptions){
+//     item.addEventListener('click', ()=> {
+//         console.log(item.getAttribute('data-choice'));
+//     })
+// }
+
+// const rockButton = document.createElement('button');
+// rockButton.textContent = 'Rock';
+// rockButton.classList.add('player-choice');
+// rockButton.setAttribute('data-choice', 'rock');
+
+// const paperButton = document.createElement('button');
+// paperButton.textContent = 'Paper';
+// paperButton.classList.add('player-choice');
+// paperButton.setAttribute('data-choice', 'paper');
+
+// const scissorsButton = document.createElement('button');
+// scissorsButton.textContent = 'Scissors';
+// scissorsButton.classList.add('player-choice');
+// scissorsButton.setAttribute('data-choice', 'scissors');
 
 
-rockButton.addEventListener('click', ()=> {
-    console.log(rockButton.getAttribute('data-choice'));
-});
-
-paperButton.addEventListener('click', ()=> {
-    console.log(paperButton.getAttribute('data-choice'));
-});
+// buttonContainer.appendChild(rockButton);
+// buttonContainer.appendChild(paperButton);
+// buttonContainer.appendChild(scissorsButton);
 
 
+// rockButton.addEventListener('click', ()=> {
+//     console.log(rockButton.getAttribute('data-choice'));
+// });
 
-scissorsButton.addEventListener('click', () => {
-    console.log(scissorsButton.getAttribute('data-choice'));
-})
+// paperButton.addEventListener('click', ()=> {
+//     console.log(paperButton.getAttribute('data-choice'));
+// });
+
+
+
+// scissorsButton.addEventListener('click', () => {
+//     console.log(scissorsButton.getAttribute('data-choice'));
+// })
 
 
