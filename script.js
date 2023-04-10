@@ -1,6 +1,7 @@
 const options = ['rock', 
                  'paper', 
-                 'scissors'];
+                 'scissors',
+                 ];
 
 function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
@@ -15,10 +16,13 @@ function playRound( playerChoice ) {
     let CPUChoice = getComputerChoice();
     let pChoiceEnum = enumerateChoice(playerChoice);
     let cChoiceEnum = enumerateChoice(CPUChoice);
+    // let resultsContainer = document.createElement('div');    //If adding new result div after every round instead of updating uncomment and change
+    // resultsContainer.classList.add('result-container');
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
-         CPUChoice = capitalize(CPUChoice);
+        CPUChoice = capitalize(CPUChoice);
         console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
         resultContainer.textContent = `You lose. ${CPUChoice} beats ${playerChoice}`;
+        resultContainer.style.backgroundColor = 'rgb(160, 20, 20)';
         
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
@@ -27,6 +31,7 @@ function playRound( playerChoice ) {
         playerChoice = capitalize(playerChoice);
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
         resultContainer.textContent = `You win! ${playerChoice} beats ${CPUChoice}`;
+        resultContainer.style['background-color'] = 'rgb(0, 90, 28)';
     }
     document.body.appendChild(resultContainer);
 }
@@ -77,6 +82,8 @@ function game() {
 
 const buttonContainer = document.querySelector('.button-container');
 const resultContainer = document.createElement('div');
+
+resultContainer.classList.add('result-container');
 
 for(choice in options){
     button = document.createElement('button');
