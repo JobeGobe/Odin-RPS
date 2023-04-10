@@ -1,7 +1,14 @@
+html, 
+body{
+    height: 100%;
+}
+
 body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0;
+    margin: 0;
 }
 
 h1{
@@ -10,6 +17,12 @@ h1{
     margin-top: 32px;
 }
 
+footer{
+    background-color: lightgray;
+    display: flex;
+    padding: 1em;
+    justify-content: center;
+}
 .game-container{
     display: flex;
     align-items: center;
@@ -32,9 +45,11 @@ h1{
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    width: 25%;
+    font-size: 1.25em;
 }
-
+.score-header{
+    flex: 1;
+}
 .player-choice{
     font-size: 2rem;
     padding: 24px;
