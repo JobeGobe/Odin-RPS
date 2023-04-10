@@ -18,15 +18,17 @@ function playRound( playerChoice ) {
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
          CPUChoice = capitalize(CPUChoice);
         console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
-        return 'loss';
+        resultContainer.textContent = `You lose. ${CPUChoice} beats ${playerChoice}`;
+        
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
-        return 0;
+        resultContainer.textContent = `Draw`;
     } else {
         playerChoice = capitalize(playerChoice);
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
-        return 'win';
+        resultContainer.textContent = `You win! ${playerChoice} beats ${CPUChoice}`;
     }
+    document.body.appendChild(resultContainer);
 }
 function enumerateChoice( choice ){
     if(choice === "rock"){
@@ -74,6 +76,7 @@ function game() {
 /*game();*/
 
 const buttonContainer = document.querySelector('.button-container');
+const resultContainer = document.createElement('div');
 
 for(choice in options){
     button = document.createElement('button');
@@ -84,6 +87,9 @@ for(choice in options){
 }
 
 
+let round = 1;
+
+
 buttonContainer.addEventListener('click', (e)=> {
     let choice = e.target.getAttribute('data-choice');
 
@@ -91,7 +97,6 @@ buttonContainer.addEventListener('click', (e)=> {
         playRound(choice);
     }
 });
-
 
 // for( item in buttonOptions){
 //     item.addEventListener('click', ()=> {
