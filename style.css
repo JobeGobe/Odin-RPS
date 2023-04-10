@@ -42,10 +42,14 @@ footer{
 
 .score-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     font-size: 1.25em;
+    min-width: 100%;
+    margin-left: 33%;
+    margin-right: 33%;
+
 }
 .score-header{
     flex: 1;
