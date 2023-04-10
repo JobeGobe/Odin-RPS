@@ -27,13 +27,14 @@ function playRound( playerChoice ) {
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
         resultContainer.textContent = `Draw`;
+        resultContainer.style.backgroundColor = 'rgb(35, 35, 35)';
     } else {
         playerChoice = capitalize(playerChoice);
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
         resultContainer.textContent = `You win! ${playerChoice} beats ${CPUChoice}`;
         resultContainer.style['background-color'] = 'rgb(0, 90, 28)';
     }
-    document.body.appendChild(resultContainer);
+    //gameContainer.appendChild(resultContainer);       //usable but prefer premade result container so buttons don't shift after first press
 }
 function enumerateChoice( choice ){
     if(choice === "rock"){
@@ -79,11 +80,16 @@ function game() {
     console.log(CPUScore);
 }
 /*game();*/
-
+const gameContainer = document.querySelector('.game-container');
 const buttonContainer = document.querySelector('.button-container');
-const resultContainer = document.createElement('div');
 
+const resultContainer = document.createElement('div');
 resultContainer.classList.add('result-container');
+resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
+gameContainer.appendChild(resultContainer);
+
+let computerScore = 0;
+let playerScore = 0;
 
 for(choice in options){
     button = document.createElement('button');
