@@ -84,6 +84,15 @@ for(choice in options){
 }
 
 
+buttonContainer.addEventListener('click', (e)=> {
+    let choice = e.target.getAttribute('data-choice');
+
+    if( choice !== null){
+        console.log(choice);
+    }
+});
+
+
 // for( item in buttonOptions){
 //     item.addEventListener('click', ()=> {
 //         console.log(item.getAttribute('data-choice'));
