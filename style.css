@@ -1,5 +1,7 @@
 body{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 h1{
@@ -23,6 +25,14 @@ h1{
     align-items: center;
     justify-content: center;
     gap: 1em;
+}
+
+.score-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 25%;
 }
 
 .player-choice{

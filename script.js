@@ -23,6 +23,7 @@ function playRound( playerChoice ) {
         console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
         resultContainer.textContent = `You lose. ${CPUChoice} beats ${playerChoice}`;
         resultContainer.style.backgroundColor = 'rgb(160, 20, 20)';
+        computerScore++;
         
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
@@ -33,7 +34,9 @@ function playRound( playerChoice ) {
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
         resultContainer.textContent = `You win! ${playerChoice} beats ${CPUChoice}`;
         resultContainer.style['background-color'] = 'rgb(0, 90, 28)';
+        playerScore++;
     }
+    updateScoreDisplay();
     //gameContainer.appendChild(resultContainer);       //usable but prefer premade result container so buttons don't shift after first press
 }
 function enumerateChoice( choice ){
@@ -49,6 +52,11 @@ function enumerateChoice( choice ){
 function capitalize( inputString ){
     let capitalizedString = (inputString[0].toUpperCase() + inputString.slice(1));
     return capitalizedString;
+}
+
+function updateScoreDisplay() {
+    playerScoreDisplay.textContent = `${playerScore}`;
+    computerScoreDisplay.textContent = `${computerScore}`;
 }
 
 function game() {
@@ -82,6 +90,8 @@ function game() {
 /*game();*/
 const gameContainer = document.querySelector('.game-container');
 const buttonContainer = document.querySelector('.button-container');
+const playerScoreDisplay = document.querySelector('.player-score-number');
+const computerScoreDisplay = document.querySelector('.computer-score-number');
 
 const resultContainer = document.createElement('div');
 resultContainer.classList.add('result-container');
@@ -91,6 +101,8 @@ gameContainer.appendChild(resultContainer);
 let computerScore = 0;
 let playerScore = 0;
 
+playerScoreDisplay.textContent = `${playerScore}`;
+computerScoreDisplay.textContent = `${computerScore}`;
 for(choice in options){
     button = document.createElement('button');
     button.textContent = capitalize(`${options[choice]}`);
