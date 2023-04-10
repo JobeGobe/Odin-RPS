@@ -11,7 +11,8 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function playRound( playerChoice, CPUChoice ) {
+function playRound( playerChoice ) {
+    let CPUChoice = getComputerChoice();
     let pChoiceEnum = enumerateChoice(playerChoice);
     let cChoiceEnum = enumerateChoice(CPUChoice);
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
@@ -76,7 +77,6 @@ const buttonContainer = document.querySelector('.button-container');
 
 for(choice in options){
     button = document.createElement('button');
-    console.log(options[choice]);
     button.textContent = capitalize(`${options[choice]}`);
     button.classList.add('player-choice');
     button.setAttribute('data-choice', `${options[choice]}`);
@@ -88,7 +88,7 @@ buttonContainer.addEventListener('click', (e)=> {
     let choice = e.target.getAttribute('data-choice');
 
     if( choice !== null){
-        console.log(choice);
+        playRound(choice);
     }
 });
 
