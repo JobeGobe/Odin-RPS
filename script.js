@@ -54,9 +54,19 @@ function capitalize( inputString ){
     return capitalizedString;
 }
 
-function updateScoreDisplay() {
+function updateScoreDisplay(){
     playerScoreDisplay.textContent = `${playerScore}`;
     computerScoreDisplay.textContent = `${computerScore}`;
+}
+
+function resetGame(){
+    computerScore = 0;
+    playerScore = 0;
+    updateScoreDisplay();
+    resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
+    resultContainer.style['background-color'] = 'black';
+    let roundNumber = 1;
+    resetButton.style.visibility = 'hidden';
 }
 
 function game() {
@@ -98,8 +108,28 @@ resultContainer.classList.add('result-container');
 resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
 gameContainer.appendChild(resultContainer);
 
+const resetButton = document.createElement('button');
+resetButton.textContent = 'Restart Game';
+resetButton.style.visibility = 'hidden';
+
+gameContainer.appendChild(resetButton);
+
+
 let computerScore = 0;
 let playerScore = 0;
+let roundNumber = 1;
+
+
+resetButton.addEventListener('click', () => {
+    resetGame();
+
+})
+
+window.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyA'){
+        resetButton.style.visibility  = 'visible';
+    }
+})
 
 playerScoreDisplay.textContent = `${playerScore}`;
 computerScoreDisplay.textContent = `${computerScore}`;
