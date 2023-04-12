@@ -37,6 +37,11 @@ function playRound( playerChoice ) {
         playerScore++;
     }
     updateScoreDisplay();
+    roundNumber++;
+    if(roundNumber >= 5){
+        removeEventButtons();
+        gameOver = true;
+    }
     //gameContainer.appendChild(resultContainer);       //usable but prefer premade result container so buttons don't shift after first press
 }
 function enumerateChoice( choice ){
@@ -60,13 +65,27 @@ function updateScoreDisplay(){
 }
 
 function resetGame(){
-    computerScore = 0;
-    playerScore = 0;
-    updateScoreDisplay();
-    resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
-    resultContainer.style['background-color'] = 'black';
-    let roundNumber = 1;
-    resetButton.style.visibility = 'hidden';
+    initializeGame();
+    if(gameOver === true){
+        gameOver === false;
+        addEventButtons();
+    }
+}
+
+function addEventButtons(){
+    buttonContainer.addEventListener('click', notAnonymous);
+}
+
+function notAnonymous(e) {
+    let choice = e.target.getAttribute('data-choice');
+
+    if( choice !== null){
+        playRound(choice);
+    }
+}
+
+function removeEventButtons(){
+    buttonContainer.removeEventListener('click', notAnonymous);
 }
 
 function game() {
@@ -97,6 +116,16 @@ function game() {
     console.log(playerScore);
     console.log(CPUScore);
 }
+
+function initializeGame(){
+    computerScore = 0;
+    playerScore = 0;
+    updateScoreDisplay();
+    resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
+    resultContainer.style['background-color'] = 'black';
+    let roundNumber = 1;
+    resetButton.style.visibility = 'hidden';
+}
 /*game();*/
 const gameContainer = document.querySelector('.game-container');
 const buttonContainer = document.querySelector('.button-container');
@@ -119,16 +148,12 @@ let computerScore = 0;
 let playerScore = 0;
 let roundNumber = 1;
 
+let gameOver = false;
+
 
 resetButton.addEventListener('click', () => {
     resetGame();
 
-})
-
-window.addEventListener('keydown', (event) => {
-    if(event.code === 'KeyA'){
-        resetButton.style.visibility  = 'visible';
-    }
 })
 
 playerScoreDisplay.textContent = `${playerScore}`;
@@ -141,18 +166,15 @@ for(choice in options){
     buttonContainer.appendChild(button);
 }
 
+addEventButtons();
 
-let round = 1;
 
 
-buttonContainer.addEventListener('click', (e)=> {
-    let choice = e.target.getAttribute('data-choice');
-
-    if( choice !== null){
-        playRound(choice);
-    }
-});
-
+// while(true){
+//     if(roundNumber === 5){
+//         resetButton.style.visibility = 'visible';
+//     }
+// }
 // for( item in buttonOptions){
 //     item.addEventListener('click', ()=> {
 //         console.log(item.getAttribute('data-choice'));
