@@ -39,12 +39,24 @@ function playRound( playerChoice ) {
     updateScoreDisplay();
     
     if(roundNumber++ >= 5){
-        removeEventButtons();
-        gameOver = true;
-        resetButton.style.visibility = 'visible'
+        gameEnd();
     }
     //gameContainer.appendChild(resultContainer);       //usable but prefer premade result container so buttons don't shift after first press
 }
+function gameEnd(){
+    removeEventButtons();
+    gameOver = true;
+    resetButton.style.visibility = 'visible';
+    if(playerScore > computerScore){
+        gameResult.textContent = 'You Win!';
+    } else if (playerScore === computerScore){
+        gameResult.textContent = 'Draw.'
+    } else {
+        gameResult.textContent = 'You Lose.'
+    }
+    gameContainer.appendChild(gameResult)
+}
+
 function enumerateChoice( choice ){
     if(choice === "rock"){
         return 0;
@@ -70,6 +82,7 @@ function resetGame(){
     if(gameOver === true){
         gameOver === false;
         addEventButtons();
+        gameContainer.removeChild(gameResult)
     }
 }
 
@@ -173,7 +186,7 @@ for(choice in options){
 
 addEventButtons();
 
-gameContainer.appendChild(gameResult);
+
 
 
 
