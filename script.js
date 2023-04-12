@@ -89,34 +89,34 @@ function removeEventButtons(){
     buttonContainer.removeEventListener('click', notAnonymous);
 }
 
-function game() {
-    const NUMBER_OF_ROUNDS = 5;
-    let playerScore = 0;
-    let CPUScore = 0;
-    for( round = 1; round <= NUMBER_OF_ROUNDS; round++ ) {
-        let CPUChoice = getComputerChoice();
-        let playerChoice = getPlayerChoice(round);
+// function game() {
+//     const NUMBER_OF_ROUNDS = 5;
+//     let playerScore = 0;
+//     let CPUScore = 0;
+//     for( round = 1; round <= NUMBER_OF_ROUNDS; round++ ) {
+//         let CPUChoice = getComputerChoice();
+//         let playerChoice = getPlayerChoice(round);
 
-        let result = playRound(playerChoice, CPUChoice);
-        if (result === 'win') {
-            playerScore += 1;
-        } else if(result === 'loss') {
-            CPUScore += 1;
-        }
+//         let result = playRound(playerChoice, CPUChoice);
+//         if (result === 'win') {
+//             playerScore += 1;
+//         } else if(result === 'loss') {
+//             CPUScore += 1;
+//         }
 
         
-    }
+//     }
 
-    if (playerScore > CPUScore){
-        console.log(`You Win with a final Score of ${playerScore}-${CPUScore}.`);
-    } else if (CPUScore > playerScore) {
-        console.log(`You Lose with a final Score of ${playerScore}-${CPUScore}.`);
-    } else if(playerScore === CPUScore) {
-        console.log(`The game ends in a draw. ${playerScore}-${CPUScore}`);
-    }
-    console.log(playerScore);
-    console.log(CPUScore);
-}
+//     if (playerScore > CPUScore){
+//         console.log(`You Win with a final Score of ${playerScore}-${CPUScore}.`);
+//     } else if (CPUScore > playerScore) {
+//         console.log(`You Lose with a final Score of ${playerScore}-${CPUScore}.`);
+//     } else if(playerScore === CPUScore) {
+//         console.log(`The game ends in a draw. ${playerScore}-${CPUScore}`);
+//     }
+//     console.log(playerScore);
+//     console.log(CPUScore);
+// }
 
 function initializeGame(){
     computerScore = 0;
@@ -141,6 +141,10 @@ gameContainer.appendChild(resultContainer);
 const resetButton = document.createElement('button');
 resetButton.textContent = 'Restart Game';
 resetButton.style.visibility = 'hidden';
+
+const gameResult = document.createElement('div');
+gameResult.classList.add('victory-container');
+gameResult.textContent = 'You Win!'
 
 gameContainer.appendChild(resetButton);
 
@@ -169,6 +173,7 @@ for(choice in options){
 
 addEventButtons();
 
+gameContainer.appendChild(gameResult);
 
 
 
