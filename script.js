@@ -21,26 +21,27 @@ function playRound( playerChoice ) {
     if((pChoiceEnum + 1) % 3 === cChoiceEnum){
         CPUChoice = capitalize(CPUChoice);
         console.log(`You lose. ${CPUChoice} beats ${playerChoice}.`);
-        resultContainer.textContent = `You lose. ${CPUChoice} beats ${playerChoice}`;
+        resultContainer.textContent = `Round ${roundNumber}: You lose. ${CPUChoice} beats ${playerChoice}`;
         resultContainer.style.backgroundColor = 'rgb(160, 20, 20)';
         computerScore++;
         
     } else if( pChoiceEnum === cChoiceEnum){
         console.log(`Draw.`)
-        resultContainer.textContent = `Draw`;
+        resultContainer.textContent = `Round ${roundNumber}: Draw`;
         resultContainer.style.backgroundColor = 'rgb(35, 35, 35)';
     } else {
         playerChoice = capitalize(playerChoice);
         console.log( `You win! ${playerChoice} beats ${CPUChoice}.`);
-        resultContainer.textContent = `You win! ${playerChoice} beats ${CPUChoice}`;
+        resultContainer.textContent = `Round ${roundNumber}: You win! ${playerChoice} beats ${CPUChoice}`;
         resultContainer.style['background-color'] = 'rgb(0, 90, 28)';
         playerScore++;
     }
     updateScoreDisplay();
-    roundNumber++;
-    if(roundNumber >= 5){
+    
+    if(roundNumber++ >= 5){
         removeEventButtons();
         gameOver = true;
+        resetButton.style.visibility = 'visible'
     }
     //gameContainer.appendChild(resultContainer);       //usable but prefer premade result container so buttons don't shift after first press
 }
@@ -123,7 +124,7 @@ function initializeGame(){
     updateScoreDisplay();
     resultContainer.textContent = 'Rock -> Scissors -> Paper -> Rock';
     resultContainer.style['background-color'] = 'black';
-    let roundNumber = 1;
+    roundNumber = 1;
     resetButton.style.visibility = 'hidden';
 }
 /*game();*/
@@ -170,11 +171,7 @@ addEventButtons();
 
 
 
-// while(true){
-//     if(roundNumber === 5){
-//         resetButton.style.visibility = 'visible';
-//     }
-// }
+
 // for( item in buttonOptions){
 //     item.addEventListener('click', ()=> {
 //         console.log(item.getAttribute('data-choice'));
