@@ -84,4 +84,6 @@ footer{
     text-align: center;
     align-items: center;
     border-radius: 12px;
+    color: lightgray;
+    border: 2px solid black
 }
